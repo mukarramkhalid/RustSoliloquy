@@ -39,7 +39,7 @@ This step modifies specific registry keys using native APIs such as `NtOpenKey`,
 
 - **Challenge Modification**: The crafted Type-2 message is intercepted and modified before being sent back to the client. A custom challenge replaces the default one, and optionally, the ESS (Extended Session Security) flag is disabled to simplify the client's response.
 
-- **Type-3 Message (NtLmAuthenticate)**: The client processes the modified Type-2 message using `InitializeSecurityContext` and generates a Type-3 message containing its response to the challenge, including the NetNTLM hashes. These hashes are then extracted for offline cracking or relay attacks.
+- **Type-3 Message (NtLmAuthenticate)**: The client processes the modified Type-2 message using `InitializeSecurityContext` and generates a Type-3 message containing its response to the challenge, including the NetNTLM hashes.
 
 - **NetNTLM Hash Extraction**: The Type-3 message is parsed to extract the NetNTLM hashes, which can then be used for offline cracking or relay attacks.
 
