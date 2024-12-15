@@ -1,0 +1,34 @@
+[build]
+target = "x86_64-pc-windows-msvc"
+
+[unstable]
+build-std = ["core", "alloc"]
+
+[target.x86_64-pc-windows-msvc]
+rustflags = [
+    "-C", "link-arg=/ENTRY:_start",  
+    "-C", "link-arg=/SUBSYSTEM:console",  
+    "-C", "link-arg=/NODEFAULTLIB",  
+    "-C", "codegen-units=1",  
+    "-C", "relocation-model=pic", 
+    "-C", "link-arg=-Wl,-s,--no-seh,--enable-stdcall-fixup",  
+    "-C", "link-arg=-Wl,--gc-sections",  
+    "-C", "target-cpu=native"  
+]
+
+[target.x86_64-pc-windows-gnu]
+rustflags = [
+    "-C", "link-arg=-nostdlib",
+    "-C", "codegen-units=1",
+    "-C", "link-arg=-fno-ident",
+    "-C", "link-arg=-fpack-struct=8",
+    "-C", "link-arg=-Wl,--gc-sections",
+    "-C", "link-arg=-falign-jumps=1",
+    "-C", "link-arg=-w",
+    "-C", "link-arg=-falign-labels=1",
+    "-C", "relocation-model=pic",
+    "-C", "link-arg=-Wl,-s,--no-seh,--enable-stdcall-fixup",
+    "-C", "link-arg=-Wl,--subsystem,console",
+    "-C", "link-arg=-nostartfiles",
+    "-C", "link-arg=-Wl,-e_start",
+]

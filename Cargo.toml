@@ -1,0 +1,31 @@
+[package]
+name = "RustSoliloquy"
+version = "0.1.0"
+edition = "2021"
+authors = ["safedv"]
+
+[dependencies]
+libc-print = "0.1.23"
+spin = "0.9.8"
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+opt-level = "z"
+codegen-units = 1
+lto = true
+strip = true
+debug = false
+debug-assertions = false
+panic = "abort"
+incremental = false
+
+
+[features]
+default = ["impersonate", "downgrade", "restore"]
+impersonate = []
+downgrade = []
+restore = ["downgrade"]
+threads = ["impersonate"]
+verbose = []
